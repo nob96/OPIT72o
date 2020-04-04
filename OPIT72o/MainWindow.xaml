@@ -1,0 +1,63 @@
+﻿<Window x:Class="OPIT72o.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:OPIT72o.ViewModel"
+        mc:Ignorable="d"
+        Title="OPIT72o" Height="650" Width="800">
+    <Window.DataContext>
+        <local:Main/>
+    </Window.DataContext>
+    <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition MaxHeight="20"></RowDefinition>
+            </Grid.RowDefinitions>
+            
+            <Menu Background="AliceBlue" FontSize="14">
+                <MenuItem Header="Bankroll" FontWeight="Bold">
+                    <MenuItem Header="Neu..." HorizontalAlignment="Left" Height="Auto" Width="180" Command="{Binding CmdShowBNeuV}"/>
+                    <MenuItem Header="Übersicht..." HorizontalAlignment="Left" Height="Auto" Width="180" Command="{Binding CmdShowBUbersichtV}"/>
+                    <MenuItem Header="Einstellungen..." HorizontalAlignment="Left" Height="Auto" Width="180"/>
+                </MenuItem>
+
+                <MenuItem Header="Session" FontWeight="Bold">
+                    <MenuItem Header="Neu..." HorizontalAlignment="Left" Height="Auto" Width="180" Command="{Binding CmdShowSNeuV}"/>
+                    <MenuItem Header="Übersicht Aktive..." HorizontalAlignment="Left" Height="Auto" Width="206" Command="{Binding CmdShowSUbersichtV}" Margin="0,0,-26,0"/>
+                    <MenuItem Header="Einstellungen..." HorizontalAlignment="Left" Height="Auto" Width="180"/>
+                </MenuItem>
+
+                <MenuItem Header="LiveSession" FontWeight="Bold">
+                    <MenuItem Header="Live Session..." HorizontalAlignment="Left" Height="Auto" Width="180" Command="{Binding CmdShowLSUbersichtV}"/>
+                    <MenuItem Header="Einstellungen..." HorizontalAlignment="Left" Height="Auto" Width="180"/>    
+                </MenuItem>
+
+                <MenuItem Header="Training" FontWeight="Bold">
+                    <MenuItem Header="Equilab..." HorizontalAlignment="Left" Height="Auto" Width="180"/>
+                    <MenuItem Header="Snowie..." HorizontalAlignment="Left" Height="Auto" Width="180"/>
+                    <MenuItem Header="Benito..." HorizontalAlignment="Left" Height="Auto" Width="180" Command="{Binding CmdShowTBenitoV}"/>
+                </MenuItem>
+
+                <MenuItem Header="Backup" FontWeight="Bold">
+                    <MenuItem Header="PokerKing Hand History..." HorizontalAlignment="Left" Height="Auto" Width="260"/>
+                    <MenuItem Header="Snowie Exports..." HorizontalAlignment="Left" Height="Auto" Width="260"/>
+                </MenuItem>
+
+            </Menu>
+        </Grid>
+        
+        <Grid Margin="0,25,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="8*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"></RowDefinition>
+            </Grid.RowDefinitions>
+            
+            <ContentPresenter Grid.Column="1" Grid.Row="0" Content="{Binding Presenter}"/>
+        </Grid>
+        
+    </Grid>
+</Window>

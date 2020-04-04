@@ -1,0 +1,79 @@
+﻿<UserControl x:Class="OPIT72o.UserControl.Tracker.Ubersicht"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:OPIT72o.ViewModel.Tracker"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <local:Ubersicht/>
+    </UserControl.DataContext>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="7*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Online Session Tracker" FontSize="20" FontWeight="Bold" FontStyle="Italic" Grid.Row="0" Grid.Column="0"  Grid.RowSpan="2">
+            <TextBlock.TextDecorations>
+                <TextDecoration/>
+            </TextBlock.TextDecorations></TextBlock>
+
+        <GroupBox Header="Watcher konfigurieren" Margin="5" Grid.Row="1" FontSize="14">
+            <StackPanel Margin="5">
+                <TextBlock Text="Pfad">
+                    <TextBlock.TextDecorations>
+                        <TextDecoration/>
+                    </TextBlock.TextDecorations>
+                </TextBlock>
+                <TextBox Margin="0,5,0,0" Text="{Binding Model.PfadLokal}"/>
+                <Button Content="Browse..." HorizontalAlignment="Left" Margin="0,5,0,0" Command="{Binding CmdBrowse}"/>
+
+                <TextBlock Text="Nickname" Margin="0,10,0,0">
+                    <TextBlock.TextDecorations>
+                        <TextDecoration/>
+                    </TextBlock.TextDecorations>
+                </TextBlock>
+                <TextBox Text="{Binding Model.Nickname}" Margin="0,5,0,0"/>
+
+                <TextBlock Text="Watcher Status" Margin="0,10,0,0">
+                    <TextBlock.TextDecorations>
+                        <TextDecoration/>
+                    </TextBlock.TextDecorations>
+                </TextBlock>
+                <TextBox Text="{Binding WatcherStatus}" IsReadOnly="True" Margin="0,5,0,0"/>
+
+                <TextBlock Text="Aktive Session" Margin="0,10,0,0">
+                    <TextBlock.TextDecorations>
+                        <TextDecoration/>
+                    </TextBlock.TextDecorations>
+                </TextBlock>
+                <TextBox Text="{Binding Model.Session8}"/>
+
+                <Button Content="Watcher starten" HorizontalAlignment="Left" Margin="0,35,0,0" Command="{Binding CmdWatch}"/>
+            </StackPanel>
+        </GroupBox>
+
+        <DataGrid Grid.Row="1" Grid.Column="1" FontSize="14" ItemsSource="{Binding Model.List}" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="PokerKing Hand ID" Binding="{Binding PokerKingID}" />
+                <DataGridCheckBoxColumn Header="Remember" Binding="{Binding Remember, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                <DataGridTextColumn Header="Notiz" Binding="{Binding Notiz, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <DataGridTextColumn Header="DB Status" Binding="{Binding DBStatus}" />
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Update" Command="{Binding CmdUpdate}" CommandParameter="{Binding}"  />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+    </Grid>
+</UserControl>
